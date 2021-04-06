@@ -1,0 +1,108 @@
+{% extends 'library/BookPage.html' %}
+{% load staticfiles %}
+
+{% block title_block %} 
+	{% if genre %}
+		{{ genre.name }}
+    {% else %}
+        Unknown genre
+    {% endif %}
+{% endblock %}
+
+
+
+{%block body_block%}
+
+	{% if genre %}
+		{% if books %}
+			{% if bookpage %}
+				{% for bp in bookpage %}
+				
+					{% if bp.name == "FING" %}
+						
+						
+				         <div class = "row" id = "book">
+
+				             <div class = "col-md-6 col-sm-6 col-xs-6">
+				                 <img src = "{% static 'images/C6.jpg' %}" width = "300">
+				             </div>
+
+				             <div class = "col-md-6 col-sm-6 col-xs-6" id = "book2">
+				                 <h1 class = "bookDesc">{{bp.name}}</h1>
+				                 <h2 class = "bookDesc">Genre: {{genre.name}}</h2>
+				                 <h2 class = "bookDesc">Copies Available: 5</h2>
+				                 <a href="">
+				                     <button id = "reserve">
+				                         Reserve
+				                     </button>
+				                 </a>
+
+				                 <a href="">
+				                     <button id = "wish">
+				                         Wishlist
+				                     </button>
+				                 </a>
+
+
+
+				             </div>
+
+				         </div>
+
+
+				         <div class = "genreType">
+				             <p class = "genreTypeTitle">
+				                 Other Similar Books
+				             </p>
+				         </div>
+
+				         <div class = "row" id = "genreOne">
+
+    
+				                 <img src = "{% static 'images/F2.jpg' %}"
+				                 class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            
+				                 <img src = "{% static 'images/F3.jpg' %}"
+				                 class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+       
+				                 <img src = "{% static 'images/F4.jpg' %}"
+				                 class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+        
+				                 <img src = "{% static 'images/F5.jpg' %}"
+				                 class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+
+
+				         </div>
+
+
+				         <div class="card">
+							<div class="card-body">
+								<h3 class="text-center">Add Review</h3>
+								<form action="{% url 'library:add_review' book.id %}" method="POST">
+									{% csrf_token %}
+									<label for="comment">Review</label>
+									<textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
+					
+									<label for="rating">Rating</label>
+									<input type="text" name="rating" class="form-control">
+
+									<br>
+									<input type="submit" class="btn btn-danger" value="Add Review">
+								</form>
+							</div>
+						 </div>
+						 <div class="card-body">
+							<ul>
+								{% for review in reviews %}
+								<li> {{ review.comment }} <i> {{ review.user }}</i></li>
+								{% endfor %}
+							</ul> 
+						 </div>
+					{% endif %}	
+					
+										
+				{% endfor %}
+			{% endif %}
+		{% endif %}
+	{% endif %}	
+{% endblock %}

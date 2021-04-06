@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html>
+<style>
+    .hello_message{
+        font-size: 18px;
+        color: black;
+        margin-right: 100px;
+    }
+</style>
+    <head>
+
+        <!-- The link tag below adds bootstrap--> 
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+        crossorigin="anonymous">
+
+        <!-- The link tag below links the html file to the CSS file-->
+		<link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}" />
+        
+        <title>
+			{% block title_block %}
+				Waterstones
+			{% endblock %}
+
+        </title>
+
+    </head>
+
+
+    <div id = "bigDiv">
+
+        <header class = "row" id = "topHeader">
+
+             <!-- This is the code for the first row of content. 
+            The classes for the below three divs split the screen
+            in to three equal pieces of four columns each using bootstrap-->
+            <div class = "col-md-4 col-sm-4 col-xs-4">
+            </div>
+
+            <div class = "col-md-4 col-sm-4 col-xs-4">
+                <h4 id = "heading">
+                 	Glasgow Library
+                </h4>
+            </div>
+            <!-- fix this u cunt -->
+            {% if user.is_authenticated %}
+            <span class="hello_message">
+            Welcome, {{ user.username }}
+             </span>
+             <span class="hello_message">
+            <div class = "col-md-4 col-sm-4 col-xs-4" id = "logInDiv"></div>
+                <a href="http://127.0.0.1:8000/library/register/">
+                    <button id = "navLogInButton">Signout</button>
+                </a>
+            </span>
+            {% else %}
+            
+        		<div class = "col-md-4 col-sm-4 col-xs-4" id = "logInDiv">
+                <a href="http://127.0.0.1:8000/library/register/">
+                	<button id = "navLogInButton">Register</button>
+                </a>
+                <a href="http://127.0.0.1:8000/library/login/">
+                    <button id = "navRegisterButton">Log In</button>
+                </a>
+                </div>
+                {% endif %}
+			
+
+        </header>
+
+        <hr id = "divider">
+        <!-- The header for bestsellers and search etc -->
+        <header class = "row" id = "bottomHeader">
+
+            <div class = "col-md-2 col-sm-2 col-xs-2">
+                <a href = "http://127.0.0.1:8000/">
+                    <p class = "headerItems">
+                        BESTSELLERS
+                    </p>
+                </a>
+            </div>
+
+            <div class = "col-md-2 col-sm-2 col-xs-2">
+                <a href = "http://127.0.0.1:8000/library/fiction/">
+                    <p class = "headerItems">
+			 			{% for genre in genres|slice:"2:3" %} 
+							<a href="/library/{{ genre.slug }}/">{{ genre.name }}</a> 
+						{% endfor %} 
+                    </p>
+                </a>
+            </div>
+
+            <div class = "col-md-2 col-sm-2 col-xs-2">
+                <a href = "http://127.0.0.1:8000/library/nonfiction/">
+                    <p class = "headerItems">
+			 			{% for genre in genres|slice:":1" %} 
+							<a href="/library/{{ genre.slug }}/">{{ genre.name }}</a> 
+						{% endfor %}
+                    </p>
+                </a>
+            </div>
+
+            <div class = "col-md-2 col-sm-2 col-xs-2">
+                <a href = "http://127.0.0.1:8000/library/children/">
+                    <p class = "headerItems">
+			 			{% for genre in genres|slice:"1:2" %} 
+							<a href="/library/{{ genre.slug }}/">{{ genre.name }}</a> 
+						{% endfor %}
+                    </p>
+                </a>
+            </div>
+
+            <div class = "col-md-2 col-sm-2 col-xs-2">
+                <input type="text" placeholder="Search..">
+            </div>
+
+            <div class = "col-md-1 col-sm-1 col-xs-1">
+                <a href="http://127.0.0.1:8000/library/reservations/">
+                    <button id = "reservations">
+                        Reservations
+                    </button>
+                </a>
+            </div>
+
+            <div class = "col-md-1 col-sm-1 col-xs-1">
+                <a href="http://127.0.0.1:8000/library/wishlist/">
+                    <button id = "wishList">
+                        Wishlist
+                    </button>
+                </a>
+            </div>
+
+
+        </header>
+
+
+		{% block body_block %} 
+        <body>
+			
+				
+			
+
+            <div>
+				<img src="{% static 'images/P1.jpg' %}"
+                id = "homePic">
+            </div>
+
+            <div class = "genreType">
+                <p class = "genreTypeTitle">
+                    <!-- add link to each page -->
+                    Fiction
+                </p>
+            </div>
+
+            <div class = "row" id = "genreOne">
+
+        
+                    <img src = "{% static 'images/F2.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+                
+                    <img src = "{% static 'images/F3.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+           
+                    <img src = "{% static 'images/F4.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            
+                    <img src = "{% static 'images/F5.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+
+
+            </div>
+
+
+            <div class = "genreType">
+                <p class = "genreTypeTitle">
+                    Non-Fiction
+                </p>
+            </div>
+
+            <div class = "row" id = "genreOne">
+
+        
+                    <img src = "{% static 'images/N2.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+                
+                    <img src = "{% static 'images/N3.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+           
+                    <img src = "{% static 'images/N4.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            
+                    <img src = "{% static 'images/N5.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+
+
+            </div>
+
+
+
+            <div class = "genreType">
+                <p class = "genreTypeTitle">
+                    Children's
+                </p>
+            </div>
+
+            <div class = "row" id = "genreOne">
+
+        
+                    <img src = "{% static 'images/C2.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+                
+                    <img src = "{% static 'images/C3.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+           
+                    <img src = "{% static 'images/C4.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            
+                    <img src = "{% static 'images/C5.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+
+
+            </div>
+
+
+
+            <div class = "genreType">
+                <p class = "genreTypeTitle">
+                    Our Best Picks
+                </p>
+            </div>
+
+            <div class = "row" id = "genreOne">
+
+        
+                    <img src = "{% static 'images/F5.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+                
+                    <img src = "{% static 'images/N5.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+           
+                    <img src = "{% static 'images/F6.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            
+                    <img src = "{% static 'images/N7.jpg' %}"
+                    class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+
+
+            </div>
+       <hr id = "divider">
+	   
+	   <!--
+	   <div>
+		   {% if genres %}
+		   <ul>
+			   {% for genre in genres %} 
+				   <a href="/library/{{ genre.slug }}/">{{ genre.name }}</a> 
+			   {% endfor %} 
+		   </ul> 
+		   {% else %}
+		   <strong>There are no genres present.</strong> {% endif %}
+	   </div>
+		   -->
+		   
+        </body>
+		{% endblock %}
+
+        <footer>
+
+            <div class = "row" id = "footer">
+                <p id = "footerTitle"
+                class = "col-md-3 col-sm-3 col-xs-3">
+                Glasgow Library
+                </p>
+
+                <p id = "footerItem"
+                class = "col-md-2 col-sm-2 col-xs-2">
+                <a href = "http://127.0.0.1:8000/library/about/">
+                    About Us
+                </a>
+                </p>
+
+                <p id = "footerItem"
+                class = "col-md-2 col-sm-2 col-xs-2">
+                Forum
+                </p>
+
+                <p id = "footerItem"
+                class = "col-md-2 col-sm-2 col-xs-2">
+                Contact Us
+                </p>
+
+                <p id = "footerTrademark"
+                class = "col-md-3 col-sm-3 col-xs-3">
+                Glasgow Library, Inc. 2021. We love our users!
+                </p>
+
+            </div>
+			
+            </footer>
+			        
+        </footer>
+
+    </div>
+
+
+
+</html>

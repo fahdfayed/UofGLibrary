@@ -1,0 +1,144 @@
+#heading{
+    text-align: center;
+}
+
+#navLogInButton{
+
+    border-color: #0274f7;
+    border-radius: 7%;
+    background-color: #0274f7;
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: right;
+    margin-left: 1px;
+
+}
+
+
+h1{
+	color:white;
+	text-align:center;
+	margin-top:200px;
+	text-shadow:1px 1px 1px black;
+	font-size:50px;
+}
+#navLogOutButton{
+
+    border-color: #0274f7;
+    border-radius: 7%;
+    background-color: #0274f7;
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: right;
+    margin-left: 1px;
+
+}
+
+#topHeader{
+    margin-top: 10px;
+}
+
+#navRegisterButton{
+
+    border-color: #0274f7;
+    border-radius: 7%;
+    background-color: white;
+    color: #0274f7;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: right;
+
+}
+
+.headerItems{
+    color: #0274f7;
+    font-size: 20px;
+}
+
+#bigDiv{
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#reservations{
+
+    border-color: #0274f7;
+    border-radius: 7%;
+    background-color: #0274f7;
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: right;
+    margin-left: 1px;
+
+}
+
+#wishList{
+
+    border-color: #0274f7;
+    border-radius: 7%;
+    background-color: white;
+    color: #0274f7;
+    padding-left: 30px;
+    padding-right: 30px;
+    float: right;
+
+}
+
+#divider{
+    background-color: lightblue;
+}
+
+#homePic{
+    width: 100%;
+    height: 800px;
+}
+
+.genreType{
+    background-color: rgb(226, 226, 226);
+    width: 100%;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+
+.genreTypeTitle{
+    font-size: 45px;
+    font-style: italic;
+}
+
+#genreOne{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#genrePic{
+    flex-basis: 0;
+}
+
+#footerTitle{
+    font-weight: bold;
+    font-size: 50px;
+}
+
+#footerItem{
+    font-weight: bold;
+    font-size: large;
+}
+
+#footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footerTrademark{
+    float: right;
+}
+.togglePassword{
+    
+    cursor: pointer;
+    color: blue;
+}

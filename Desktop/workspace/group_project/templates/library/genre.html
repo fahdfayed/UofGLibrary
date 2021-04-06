@@ -1,0 +1,184 @@
+{% extends 'library/index.html' %}
+{% load staticfiles %}
+
+
+{% block title_block %} 
+	{% if genre %}
+		{{ genre.name }}
+    {% else %}
+        Unknown genre
+    {% endif %}
+{% endblock %}
+
+
+{%block body_block%}
+
+	{% if genre %}
+		
+		{% if genre.name == "CHILDREN" %}
+     		<div>
+				<img src="{% static 'images/C1.jpg' %}" id = "homePic">
+  	   	 	</div>
+        	<div class = "genreType">
+            	<p class = "genreTypeTitle">
+                	Bestsellers
+            	</p>
+        	</div>
+			
+        	<div class = "row" id = "genreOne">
+
+            	<img src = "{% static 'images/C2.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">  
+              	<img src = "{% static 'images/C3.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/C4.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/C5.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+            </div>
+			
+			{% if books %}
+		
+				{% for book in books|slice:":4" %}
+					<a href="{{ book.url }}">{{ book.title }}</a>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				{% endfor %}
+				
+    		<div class = "genreType">
+        		<p class = "genreTypeTitle">
+            		Recommended For You
+        		</p>
+    		</div>
+			
+        	<div class = "row" id = "genreOne">
+
+            	<img src = "{% static 'images/C6.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">  
+              	<img src = "{% static 'images/C7.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/C8.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/C9.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+            </div>
+			
+				{% for book in books|slice:"4:8" %}
+					<a href="{{ book.url }}">{{ book.title }}</a>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				{% endfor %}		
+			
+			{% else %}
+			<strong>No books currently in genre.</strong> 
+			{% endif %}
+		{% endif %}
+		
+		
+		{% if genre.name == "NONFICTION" %}
+     		<div>
+				<img src="{% static 'images/N1.jpg' %}" id = "homePic">
+  	   	 	</div>
+		
+        	<div class = "genreType">
+            	<p class = "genreTypeTitle">
+                	Bestsellers
+            	</p>
+        	</div>
+			
+        	<div class = "row" id = "genreOne">
+
+            	<img src = "{% static 'images/N2.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">  
+              	<img src = "{% static 'images/N3.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/N4.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/N5.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+            </div>
+			
+			{% if books %}
+		
+				{% for book in books|slice:":4" %}
+					<a href="{{ book.url }}">{{ book.title }}</a>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				{% endfor %}
+				
+    		<div class = "genreType">
+        		<p class = "genreTypeTitle">
+            		Recommended For You
+        		</p>
+    		</div>
+			
+        	<div class = "row" id = "genreOne">
+
+            	<img src = "{% static 'images/N6.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">  
+              	<img src = "{% static 'images/N7.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/N8.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/N9.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+            </div>
+			
+				{% for book in books|slice:"4:8" %}
+					<a href="{{ book.url }}">{{ book.title }}</a>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				{% endfor %}		
+			
+			{% else %}
+			<strong>No books currently in genre.</strong> 
+			{% endif %}
+		{% endif %}
+		
+		
+		
+		{% if genre.name == "FICTION" %}
+		
+        	<div>
+				<img src="{% static 'images/F1.png' %}" id = "homePic">
+     	   </div>
+		
+        	<div class = "genreType">
+            	<p class = "genreTypeTitle">
+                	Bestsellers
+            	</p>
+        	</div>
+			
+        	<div class = "row" id = "genreOne">
+
+            	<img src = "{% static 'images/F2.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">  
+              	<img src = "{% static 'images/F3.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/F4.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/F5.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+            </div>
+			
+			{% if books %}
+		
+				{% for book in books|slice:":4" %}
+					<a href="{{ book.url }}">{{ book.title }}</a>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				{% endfor %}
+				
+    		<div class = "genreType">
+        		<p class = "genreTypeTitle">
+            		Recommended For You
+        		</p>
+    		</div>
+			
+        	<div class = "row" id = "genreOne">
+
+            	<img src = "{% static 'images/F6.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">  
+              	<img src = "{% static 'images/F7.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/F8.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+				<img src = "{% static 'images/F9.jpg' %}" class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+					
+            </div>
+			
+				{% for book in books|slice:"4:8" %}
+					<a href="{{ book.url }}">{{ book.title }}</a>
+					&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				{% endfor %}		
+			
+			{% else %}
+			<strong>No books currently in genre.</strong> 
+			{% endif %}
+		{% endif %}
+		
+		
+		
+
+	{% else %}
+		The specified category does not exist.
+	{% endif %}
+	
+{%endblock%}

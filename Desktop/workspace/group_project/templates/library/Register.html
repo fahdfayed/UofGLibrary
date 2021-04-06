@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+
+    <head>
+
+        <!-- The link tag below adds bootstrap-->
+        <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+        crossorigin="anonymous">
+
+        <!-- The link tag below links the html file to the CSS file-->
+        <link rel = "stylesheet" type = "text/css" href ="{% static 'CSS/LogIn.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+        
+    </head>
+
+    <div class = "col-md-10 col-sm-4 col-xs-4">
+      <h4 id = "heading">
+         Glasgow Library
+      </h4>
+  </div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="cold-md-4">
+    <div class="card mt-5">
+
+      <div class="card-body">
+        <div class="card-title py-3">
+          <h4>Register For a Free Account! </h4>
+        </div>
+        <form id="user_form" action="{% url 'library:register' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ user_form.username }}
+          </div>
+        <div class ="invalid-feedback false-feedback" style = "display:none">
+          </div>
+          <p class="text-sm text-success successfullUsername"></p>
+          <div class="form-group">
+            {{ user_form.email }}
+          
+          </div>
+          <div class ="invalid-feedback invalidEmailType" style = "display:none">
+          </div>
+          <p class="text-sm text-success successfullEmail"></p>
+          <div class="form-group">
+            {{ user_form.password }}
+            <span>
+              <i class="fa fa-eye float-right py-2" aria-hidden="true" id="eye" onclick="toggle()"></i>
+              </span>
+          </div>
+          <script>
+            var state = false;
+            function toggle(){
+              if(state){
+                document.getElementById("passwordField").setAttribute("type","password");
+                document.getElementById("eye").style.color="#7a797e";
+                state= false;
+              }else{
+                document.getElementById("passwordField").setAttribute("type","text");
+                document.getElementById("eye").style.color="#5887ef";
+                state= true;
+              }
+            }
+          </script>
+          <input type="submit" value="Register" class="btn btn-block btn-primary submitButton" />
+        </form>
+      </div>
+      <div>
+        <ul>
+          <div class="mt-4">
+            <div class="d-flex justify-content-center links ">
+              Already have an account? <li><a href="{% url 'library:login' %}">Login</a></li>
+            </div>
+          </div>
+          </ul>
+          
+      </div>
+        <div class="col-md-4"></div>
+        <script>
+          var form_fields = document.getElementsByTagName('input')
+          form_fields[1].placeholder = 'Email';
+          form_fields[1].id = 'usernameField'
+          form_fields[1].className = 'form-control form-control-sm'
+
+          form_fields[2].placeholder = 'Email';
+          form_fields[2].id = 'emailField'
+          form_fields[2].className = 'form-control form-control-sm'
+
+          form_fields[3].placeholder = 'Password';
+          form_fields[3].id = 'passwordField'
+          form_fields[3].className = 'form-control form-control-sm'
+
+          
+        </script>
+        <script src= "{% static 'js/register.js' %}"> </script>
+
+</html>

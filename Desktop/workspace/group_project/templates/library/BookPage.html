@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+
+    <head>
+
+        <!-- The link tag below adds bootstrap--> 
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+        crossorigin="anonymous">
+
+        <!-- The link tag below links the html file to the CSS file-->
+		<link rel="stylesheet" type="text/css" href="{% static 'CSS/BookPage.css' %}" />
+		
+       
+        <title>
+            Book Title
+        </title>
+
+    </head>
+
+
+    <div id = "bigDiv">
+
+        <header class = "row" id = "topHeader">
+
+            <!-- This is the code for the first row of content. 
+           The classes for the below three divs split the screen
+           in to three equal pieces of four columns each using bootstrap-->
+           <div class = "col-md-4 col-sm-4 col-xs-4">
+           </div>
+
+           <div class = "col-md-4 col-sm-4 col-xs-4">
+               <h4 id = "heading">
+                    Glasgow Library
+               </h4>
+           </div>
+
+           {% if user.is_authenticated %}
+           Welcome {{ user.username }}
+           <div class = "col-md-4 col-sm-4 col-xs-4" id = "logInDiv">
+               <a href="http://127.0.0.1:8000/library/register/">
+                   <button id = "navLogInButton" >Signout</button>
+                   </a>
+           {% else %}
+           
+               <div class = "col-md-4 col-sm-4 col-xs-4" id = "logInDiv">
+               <a href="http://127.0.0.1:8000/library/register/">
+                   <button id = "navLogInButton">Register</button>
+               </a>
+               <a href="http://127.0.0.1:8000/library/login/">
+                   <button id = "navRegisterButton">Log In</button>
+               </a>
+               </div>
+               {% endif %}
+       </header>
+
+       <hr id = "divider">
+       <!-- The header for bestsellers and search etc -->
+       <header class = "row" id = "bottomHeader">
+
+           <div class = "col-md-2 col-sm-2 col-xs-2">
+               <a href = "http://127.0.0.1:8000/">
+                   <p class = "headerItems">
+                       BESTSELLERS
+                   </p>
+               </a>
+           </div>
+
+           <div class = "col-md-2 col-sm-2 col-xs-2">
+               <a href = "http://127.0.0.1:8000/library/fiction/">
+                   <p class = "headerItems">
+                       FICTION
+                   </p>
+               </a>
+           </div>
+
+           <div class = "col-md-2 col-sm-2 col-xs-2">
+               <a href = "http://127.0.0.1:8000/library/nonfiction/">
+                   <p class = "headerItems">
+                       NON-FICTION
+                   </p>
+               </a>
+           </div>
+
+           <div class = "col-md-2 col-sm-2 col-xs-2">
+               <a href = "http://127.0.0.1:8000/library/childrens/">
+                   <p class = "headerItems">
+                       CHILDREN'S
+                   </p>
+               </a>
+           </div>
+
+           <div class = "col-md-2 col-sm-2 col-xs-2">
+               <input type="text" placeholder="Search..">
+           </div>
+
+           <div class = "col-md-1 col-sm-1 col-xs-1">
+               <a href="http://127.0.0.1:8000/library/reservations/">
+                   <button id = "reservations">
+                       Reservations
+                   </button>
+               </a>
+           </div>
+
+           <div class = "col-md-1 col-sm-1 col-xs-1">
+               <a href="http://127.0.0.1:8000/library/wishlist/">
+                   <button id = "wishList">
+                       Wishlist
+                   </button>
+               </a>
+           </div>
+
+
+       </header>
+
+       
+
+
+    <body>
+
+        <div class = "row" id = "book">
+
+            <div class = "col-md-6 col-sm-6 col-xs-6">
+               {% if book.title == "Kays Anatomy" %}
+               <img src = "{% static 'images/C3.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "Six of Crows" %}
+                <img src = "{% static 'images/C8.JPG' %}" id = "bookPic">
+                 {% endif %}
+
+                {% if book.title == "The Girl and the Dinosaur" %}
+                <img src = "{% static 'images/C7.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "FING" %}
+                <img src = "{% static 'images/C6.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "They Both Die at the End" %}
+                <img src = "{% static 'images/C5.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "One Hundred Steps" %}
+                <img src = "{% static 'images/C4.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Chain of Iron" %}
+                <img src = "{% static 'images/C2.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Destination Wedding" %}
+                <img src = "{% static 'images/C3.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "War and Peace" %}
+                <img src = "{% static 'images/N8.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "How to Avoid a Climate Disaster" %}
+                <img src = "{% static 'images/N7.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "Woman on the Edge of Time" %}
+                <img src = "{% static 'images/N6.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "Consensual Hex" %}
+                <img src = "{% static 'images/N5.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "House of Glass" %}
+                <img src = "{% static 'images/N4.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "The Boy, the Mole, the Fox, the Horse" %}
+                <img src = "{% static 'images/N3.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Becoming" %}
+                <img src = "{% static 'images/N2.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Insatiable" %}
+                <img src = "{% static 'images/F9.JPG' %}" id = "bookPic">
+                {% endif %}
+
+                {% if book.title == "Murder Club" %}
+                <img src = "{% static 'images/F8.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Fake Accounts" %}
+                <img src = "{% static 'images/F7.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "The Alchemist" %}
+                <img src = "{% static 'images/F6.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Briefly Gorgeous" %}
+                <img src = "{% static 'images/F5.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "The Guest List" %}
+                <img src = "{% static 'images/F4.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "Girl, Woman, Other" %}
+                <img src = "{% static 'images/F3.JPG' %}" id = "bookPic">
+
+                {% endif %}
+
+                {% if book.title == "The Girl with the Louding Voice" %}
+                <img src = "{% static 'images/F2.JPG' %}" id = "bookPic">
+                {% endif %}
+          
+
+            </div>
+
+            <div class = "col-md-6 col-sm-6 col-xs-6" id = "book2">
+                <h1 class = "bookDesc">{{ book.title }}</h1>
+                <h2 class = "bookDesc">Genres: {{ book.genre}}</h2>
+                <h2 class = "bookDesc">Rating</h2>
+                <h2 class = "bookDesc">Copies Available: {{ book.quantity }}</h2>
+                <a href="">
+                    <button id = "reserve">
+                        Reserve
+                    </button>
+                </a>
+
+                <a href="">
+                    <button id = "wish">
+                        Wishlist
+                    </button>
+                </a>
+
+
+
+            </div>
+
+        </div>
+
+           
+
+
+
+
+
+
+        <div class = "genreType">
+            <p class = "genreTypeTitle">
+                Other Similar Books
+            </p>
+        </div>
+
+        <div class = "row" id = "genreOne">
+
+    
+                <img src = "{% static 'images/F2.jpg' %}"
+                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            
+                <img src = "{% static 'images/F3.jpg' %}"
+                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+       
+                <img src = "{% static 'images/F4.jpg' %}"
+                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+        
+                <img src = "{% static 'images/F5.jpg' %}"
+                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+
+
+        </div>
+
+
+        <div class = "genreType">
+            <p class = "genreTypeTitle">
+                Reviews
+            </p>
+        </div>
+        <div id = "reviews" class = "row" >
+            <div class = "col-md-8 col-sm-8 col-xs-8" class = "reviewItem">
+                
+            </div>
+        </div>
+
+        <div class = "genreType">
+            <p class = "genreTypeTitle">
+                Add a Review
+            </p>
+        </div>
+
+        <h4>Let us know what you think!</h4>
+
+
+        <a href="http://127.0.0.1:8000/library/createreview/">
+            <button id = "reserve">
+                Review
+            </button>
+        </a>
+        
+
+
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center">Add Review</h3>
+                <form action="{% url 'library:add_review' book.id %}" method="POST">
+                    {% csrf_token %}
+                    <label for="comment">Review</label>
+                    <textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
+    
+                    <label for="rating">Rating</label>
+                    <input type="text" name="rating" class="form-control">
+
+                    <br>
+                    <input type="submit" class="btn btn-danger" value="Add Review">
+                </form>
+            </div>
+         </div>
+         <div class="card">
+             <div class="card-body"></div>
+                {% for review in reviews %}
+                    <div class="card">
+                        <div class="card-body" style="background-color: green;">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4 class="text-left"> {{ review.user.username }}</h4>
+                                    <h5> {{ review.rating }} </h5>
+                                </div>
+                                <div class="col-md-9">
+                                    <p> {{ review.comment }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+         </div>
+         
+            
+         </div>
+
+
+
+
+       </body>
+
+       <footer>
+
+        <div class = "row" id = "footer">
+            <p id = "footerTitle"
+            class = "col-md-3 col-sm-3 col-xs-3">
+            Glasgow Library
+            </p>
+
+            <p id = "footerItem"
+            class = "col-md-2 col-sm-2 col-xs-2">
+            <a href = "http://127.0.0.1:8000/library/about/">
+                About Us
+            </a>
+            </p>
+
+            <p id = "footerItem"
+            class = "col-md-2 col-sm-2 col-xs-2">
+            Forum
+            </p>
+
+            <p id = "footerItem"
+            class = "col-md-2 col-sm-2 col-xs-2">
+            Contact Us
+            </p>
+
+            <p id = "footerTrademark"
+            class = "col-md-3 col-sm-3 col-xs-3">
+            Glasgow Library, Inc. 2021. We love our users!
+            </p>
+
+        </div>       
+    </footer>
+
+
+    </div>
+
+</html>
