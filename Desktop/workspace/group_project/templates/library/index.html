@@ -20,10 +20,11 @@
 
         <!-- The link tag below links the html file to the CSS file-->
 		<link rel="stylesheet" type="text/css" href="{% static 'CSS/Homepage.css' %}" />
-        
+		<link rel="stylesheet" type="text/css" href="{% static 'CSS/BookPage.css' %}" />
+
         <title>
 			{% block title_block %}
-				Waterstones
+				Glasgow Library
 			{% endblock %}
 
         </title>
@@ -52,7 +53,7 @@
             Welcome, {{ user.username }}
              </span>
              <span class="hello_message">
-            <div class = "col-md-4 col-sm-4 col-xs-4" id = "logInDiv"></div>
+            <div class = "col-md-5 col-sm-5 col-xs-5" id = "logInDiv"></div>
                 <a href="http://127.0.0.1:8000/library/register/">
                     <button id = "navLogInButton">Signout</button>
                 </a>
@@ -114,22 +115,12 @@
                 </a>
             </div>
 
-            <div class = "col-md-2 col-sm-2 col-xs-2">
-                <input type="text" placeholder="Search..">
-            </div>
 
-            <div class = "col-md-1 col-sm-1 col-xs-1">
-                <a href="http://127.0.0.1:8000/library/reservations/">
+
+            <div class = "col-md-4 col-sm-4 col-xs-4">
+                <a href="{% url 'library:Favourites_List' %}">
                     <button id = "reservations">
-                        Reservations
-                    </button>
-                </a>
-            </div>
-
-            <div class = "col-md-1 col-sm-1 col-xs-1">
-                <a href="http://127.0.0.1:8000/library/wishlist/">
-                    <button id = "wishList">
-                        Wishlist
+                        WishList
                     </button>
                 </a>
             </div>
@@ -174,7 +165,12 @@
 
 
             </div>
-
+            <div class="row" id="bookTitlediv">
+                <a href="http://127.0.0.1:8000/library/bookp/1/" id="bookTitle">The Girl with the Louding Voice</a>
+                <a href="http://127.0.0.1:8000/library/bookp/2/" id="bookTitle">Girl, Woman, Other</a>
+                <a href="http://127.0.0.1:8000/library/bookp/3/" id="bookTitle">The Guest List</a>
+                <a href="http://127.0.0.1:8000/library/bookp/4/" id="bookTitle">Briefly Gorgeous</a>
+            </div>
 
             <div class = "genreType">
                 <p class = "genreTypeTitle">
@@ -199,7 +195,12 @@
 
 
             </div>
-
+            <div class="row" id="bookTitlediv">
+                <a href="http://127.0.0.1:8000/library/bookp/9/" id="bookTitle">Becoming</a>
+                <a href="http://127.0.0.1:8000/library/bookp/10/" id="bookTitle">The Boy, the Mole, the Fox, the Horse</a>
+                <a href="http://127.0.0.1:8000/library/bookp/11/" id="bookTitle">House of Glass</a>
+                <a href="http://127.0.0.1:8000/library/bookp/12/" id="bookTitle">Consensual Hex</a>
+                </div>
 
 
             <div class = "genreType">
@@ -224,6 +225,13 @@
                     class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
 
 
+            </div>
+    
+            <div class="row" id="bookTitlediv">
+            <a href="http://127.0.0.1:8000/library/bookp/17/" id="bookTitle">Chain of Iron</a>
+            <a href="http://127.0.0.1:8000/library/bookp/18/" id="bookTitle">Kay's Anatomy</a>
+            <a href="http://127.0.0.1:8000/library/bookp/19/" id="bookTitle">One Hundred Steps</a>
+            <a href="http://127.0.0.1:8000/library/bookp/20/" id="bookTitle">They Both Die at the End</a>
             </div>
 
 
@@ -251,6 +259,13 @@
 
 
             </div>
+            <div class="row" id="bookTitlediv">
+            <a href="http://127.0.0.1:8000/library/bookp/4/" id="bookTitle">Briefly Gorgeous</a>
+            <a href="http://127.0.0.1:8000/library/bookp/12/" id="bookTitle">Consensual Hex</a>
+            <a href="http://127.0.0.1:8000/library/bookp/5/" id="bookTitle">The Alchemist</a>
+            <a href="http://127.0.0.1:8000/library/bookp/14/" id="bookTitle">How to Avoid a Climate Disaster</a>
+            </div>
+
        <hr id = "divider">
 	   
 	   <!--
@@ -284,15 +299,7 @@
                 </a>
                 </p>
 
-                <p id = "footerItem"
-                class = "col-md-2 col-sm-2 col-xs-2">
-                Forum
-                </p>
 
-                <p id = "footerItem"
-                class = "col-md-2 col-sm-2 col-xs-2">
-                Contact Us
-                </p>
 
                 <p id = "footerTrademark"
                 class = "col-md-3 col-sm-3 col-xs-3">

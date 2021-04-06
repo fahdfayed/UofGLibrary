@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.http import JsonResponse
 from library.models import Genre, Book, Bookpage
@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.views.generic import ListView, DetailView
 from library.models import Book, Review
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 from django.db.models import Avg
 
@@ -41,30 +43,11 @@ def show_genre(request, genre_name_slug):
     return render(request, 'library/genre.html', context=context_dict)
 
 
+
 def About(request):
 
     return render(request, 'library/about.html')
 
-
-def CreateReview(request):
-
-    return render(request, 'library/createreview.html')
-
-'''
-def Fiction(request):
-
-    return render(request, 'library/fiction.html')
-
-
-def nonFiction(request):
-
-    return render(request, 'library/nonfiction.html')
-
-
-def Children(request):
-
-    return render(request, 'library/children.html')
-'''
 
 def LogIn(request):
     if request.method == 'POST':
@@ -136,14 +119,6 @@ def BookPage(request):
 
     return render(request, 'library/bookpage.html')
 
-def Reservations(request):
-
-    return render(request, 'library/Reservations.html')
-
-
-def WishList(request):
-
-    return render(request, 'library/WishList.html')
 
 @login_required
 def user_logout(request):
@@ -153,11 +128,17 @@ def user_logout(request):
 def detail(request, id):
     book = Book.objects.get(id = id)
     reviews = Review.objects.filter(book = id)
+    is_favorite = False    
+    if book.favourites.filter(id = request.user.id).exists():
+        is_favorite= True
+
     context_dict = {
         "book": book,
-        "reviews": reviews
+        "reviews": reviews,
+        "is_favorite": is_favorite
     }
     return render(request, 'library/BookPage.html', context=context_dict)
+
 
 def Bookp(request, genre_name_slug):
     context_dict = {}
@@ -197,6 +178,22 @@ def add_review(request, id):
     else:
         return redirect("library:login")
 
+def Favourites_List(request):
+    user = request.user
+    favourite_book = user.favorite.all()
+    context_dict = {
+        'favourite_book': favourite_book,
+    }
+    return render(request, 'library/Favorites.html', context = context_dict)
+
+@ login_required
+def Favourites(request, id):
+    book = Book.objects.get(id = id)
+    if book.favourites.filter(id=request.user.id).exists():
+        book.favourites.remove(request.user)
+    else:
+        book.favourites.add(request.user)
+    return redirect("library:detail", id)
 
 
 

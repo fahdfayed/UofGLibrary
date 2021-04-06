@@ -1,0 +1,28 @@
+{% extends 'library/index.html' %}
+{% load staticfiles %}
+
+
+{% block body_block %} 
+
+    </head>
+
+
+    <div class = "row" id = "book">
+            {% for p in favourite_book %}
+            <h1 class = "bookDesc">{{ p.title }}</h1>
+            <h2 class = "bookDesc">Genres: {{ p.genre}}</h2>
+            <h2 class = "bookDesc">Likes: {{ p.likes }}</h2>
+            <h2 class = "bookDesc">Copies Available: {{ p.quantity }}</h2>
+            {% empty %}
+            <h3> No fav books </h3>
+            {% endfor %}
+        
+    </div>
+
+
+
+{% endblock %} 
+
+
+
+

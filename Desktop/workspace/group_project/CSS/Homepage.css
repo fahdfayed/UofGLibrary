@@ -74,6 +74,11 @@ h1{
     margin-left: 1px;
 
 }
+#bookTitlediv{
+    display: flex;
+    justify-content: space-between;
+
+}
 
 #wishList{
 
@@ -86,6 +91,11 @@ h1{
     float: right;
 
 }
+    .hello_message{
+        font-size: 18px;
+        color: black;
+        margin-right: 100px;
+    }
 
 #divider{
     background-color: lightblue;

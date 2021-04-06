@@ -10,7 +10,7 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
         crossorigin="anonymous">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
         <!-- The link tag below links the html file to the CSS file-->
 		<link rel="stylesheet" type="text/css" href="{% static 'CSS/BookPage.css' %}" />
 		
@@ -86,9 +86,9 @@
            </div>
 
            <div class = "col-md-2 col-sm-2 col-xs-2">
-               <a href = "http://127.0.0.1:8000/library/childrens/">
+               <a href = "http://127.0.0.1:8000/library/children/">
                    <p class = "headerItems">
-                       CHILDREN'S
+                       CHILDREN
                    </p>
                </a>
            </div>
@@ -97,21 +97,14 @@
                <input type="text" placeholder="Search..">
            </div>
 
-           <div class = "col-md-1 col-sm-1 col-xs-1">
-               <a href="http://127.0.0.1:8000/library/reservations/">
-                   <button id = "reservations">
-                       Reservations
-                   </button>
-               </a>
-           </div>
+           <div class = "col-md-2 col-sm-2 col-xs-2">
+            <a href="{% url 'library:Favourites_List' %}">
+                <button id = "reservations">
+                    WishList
+                </button>
+            </a>
+        </div>
 
-           <div class = "col-md-1 col-sm-1 col-xs-1">
-               <a href="http://127.0.0.1:8000/library/wishlist/">
-                   <button id = "wishList">
-                       Wishlist
-                   </button>
-               </a>
-           </div>
 
 
        </header>
@@ -229,26 +222,31 @@
                 <img src = "{% static 'images/F2.JPG' %}" id = "bookPic">
                 {% endif %}
           
-
             </div>
-
+            <hr>
             <div class = "col-md-6 col-sm-6 col-xs-6" id = "book2">
                 <h1 class = "bookDesc">{{ book.title }}</h1>
                 <h2 class = "bookDesc">Genres: {{ book.genre}}</h2>
-                <h2 class = "bookDesc">Rating</h2>
+                <h2 class = "bookDesc">Likes: {{ book.likes }}</h2>
                 <h2 class = "bookDesc">Copies Available: {{ book.quantity }}</h2>
-                <a href="">
-                    <button id = "reserve">
-                        Reserve
-                    </button>
-                </a>
+                <div id = "favorites"> 
+                    {% if is_favorite %}
+                    <a href="{% url 'library:favourites' book.id %}">
+                        <i class="fas fa-heart fa-lg"></i>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'library:favourites' book.id %}">
+                        <i class="far fa-heart fa-lg"></i>
+                        <hr>
+                    </a>
+                    {% endif %}  
+                    <a href = "{% url 'library:Favourites_List' %}"><button id = "wish">Wishlist </button> </a>
 
-                <a href="">
-                    <button id = "wish">
-                        Wishlist
-                    </button>
-                </a>
+                </div>
+        
+                    
 
+                    
 
 
             </div>
@@ -261,42 +259,69 @@
 
 
 
-
         <div class = "genreType">
             <p class = "genreTypeTitle">
-                Other Similar Books
+            Other Books
             </p>
-        </div>
-
-        <div class = "row" id = "genreOne">
-
-    
-                <img src = "{% static 'images/F2.jpg' %}"
-                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
-            
-                <img src = "{% static 'images/F3.jpg' %}"
-                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
-       
-                <img src = "{% static 'images/F4.jpg' %}"
-                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
-        
-                <img src = "{% static 'images/F5.jpg' %}"
-                class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
-
-
-        </div>
-
-
-        <div class = "genreType">
-            <p class = "genreTypeTitle">
-                Reviews
-            </p>
-        </div>
-        <div id = "reviews" class = "row" >
-            <div class = "col-md-8 col-sm-8 col-xs-8" class = "reviewItem">
-                
             </div>
-        </div>
+            
+  
+            {% if book.title == "Becoming" or book.title == "The Boy, the Mole, the Fox, the Horse" or book.title == "House of Glass" or book.title == "Consensual Hex" or book.title == "Woman on the Edge of Time" or book.title == "How to Avoid a Climate Disaster " or book.title == "War and Peace" or book.title == "Destination Wedding" %}
+            <div class = "row" id = "genreOne">
+            <img src = "{% static 'images/F2.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/C3.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/F4.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/C5.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            </div>
+            <a href="http://127.0.0.1:8000/library/bookp/1"> The Girl with the Louding Voice</a>
+            <a href="http://127.0.0.1:8000/library/bookp/18"> Kay's Anatomy</a>
+            <a href="http://127.0.0.1:8000/library/bookp/3"> The Guest List</a>
+            <a href="http://127.0.0.1:8000/library/bookp/20"> They Both Die at the End</a>
+            {% endif %}
+            
+            {% if book.title == "Insatiable" or book.title == "Murder Club" or book.title == "Fake Accounts" or book.title == "The Alchemist" or book.title == "Briefly Gorgeous" or book.title == "The Guest List" or book.title == "Girl, Woman, Other " or book.title == "The Girl with the Louding Voice" %}
+            <div class = "row" id = "genreOne">
+            <img src = "{% static 'images/C2.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/N3.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/C4.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/N5.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            </div>
+            <a href="http://127.0.0.1:8000/library/bookp/17"> Chain of Iron</a>
+            <a href="http://127.0.0.1:8000/library/bookp/10"> The Boy, the Mole, the Fox, the Horse</a>
+            <a href="http://127.0.0.1:8000/library/bookp/19"> One Hundred Steps</a>
+            <a href="http://127.0.0.1:8000/library/bookp/12"> Concensual Hex</a>
+            {% endif %}
+            
+
+            
+            {% if book.title == "Chain of Iron" or book.title == "Kays Anatomy" or book.title == "One Hundred Steps" or book.title == "They Both Die at the End" or book.title == "FING" or book.title == "The Girl and the Dinosaur" or book.title == "Six of Crows" or book.title == "The Gilded Ones" %}
+            <div class = "row" id = "genreOne">
+            <img src = "{% static 'images/N6.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/F7.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/N8.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            <img src = "{% static 'images/F9.jpg' %}"
+            class = "col-md-3 col-sm-3 col-xs-3" id = "genrePic">
+            </div>
+            <a href="http://127.0.0.1:8000/library/bookp/13"> Women on the Edge of Time</a>
+            <a href="http://127.0.0.1:8000/library/bookp/6"> Fake Accounts</a>
+            <a href="http://127.0.0.1:8000/library/bookp/15"> War and Peace</a>
+            <a href="http://127.0.0.1:8000/library/bookp/8"> Insatiable</a>
+            {% endif %}
+            
+
+
+
 
         <div class = "genreType">
             <p class = "genreTypeTitle">
@@ -307,12 +332,6 @@
         <h4>Let us know what you think!</h4>
 
 
-        <a href="http://127.0.0.1:8000/library/createreview/">
-            <button id = "reserve">
-                Review
-            </button>
-        </a>
-        
 
 
 
@@ -374,22 +393,13 @@
             </a>
             </p>
 
-            <p id = "footerItem"
-            class = "col-md-2 col-sm-2 col-xs-2">
-            Forum
-            </p>
-
-            <p id = "footerItem"
-            class = "col-md-2 col-sm-2 col-xs-2">
-            Contact Us
-            </p>
 
             <p id = "footerTrademark"
             class = "col-md-3 col-sm-3 col-xs-3">
             Glasgow Library, Inc. 2021. We love our users!
             </p>
 
-        </div>       
+        </div>
     </footer>
 
 
